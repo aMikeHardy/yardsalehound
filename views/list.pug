@@ -1,0 +1,140 @@
+extends layout
+
+block content
+  .container.pt-4
+    .container.text-sm-center
+      a(href='/')
+        img.image-fluid.mb-4(src='img/ysh_logo.png', alt='Yardsale Hound Logo')
+    .container#success.alert.alert-success.fade.show.d-none
+      | Success! Your Yardsale has been posted.
+    form#form(action='/list', method='POST')
+      .form-row.w-50.mx-auto.px-2
+        .col-lg.form-group
+          h4 When:
+      .form-row.form-group.w-50.mx-auto.px-2
+        .col-lg-6.form-group
+          label(for='month') Month:
+          select#month.custom-select.ml-1(name='month')
+            option(selected='', value='00') Select Month
+            option(value='01') January
+            option(value='02') February
+            option(value='03') March
+            option(value='04') April
+            option(value='05') May
+            option(value='06') June
+            option(value='07') July
+            option(value='08') August
+            option(value='09') September
+            option(value='10') October
+            option(value='11') November
+            option(value='12') December
+        .col-lg-3.form-group
+          label(for='day') Day:
+          select#day.custom-select.ml-1(name='day')
+            option(selected='', value='01') 01
+            option(value='02') 02
+            option(value='03') 03
+            option(value='04') 04
+            option(value='05') 05
+            option(value='06') 06
+            option(value='07') 07
+            option(value='08') 08
+            option(value='09') 09
+            option(value='10') 10
+            option(value='11') 11
+            option(value='12') 12
+            option(value='13') 13
+            option(value='14') 14
+            option(value='15') 15
+            option(value='16') 16
+            option(value='17') 17
+            option(value='18') 18
+            option(value='19') 19
+            option(value='20') 20
+            option(value='21') 21
+            option(value='22') 22
+            option(value='23') 23
+            option(value='24') 24
+            option(value='25') 25
+            option(value='26') 26
+            option(value='27') 27
+            option(value='28') 28
+            option(value='29') 29
+            option(value='30') 30
+            option(value='31') 31
+        .col-lg-3.form-group
+          label(for='year') Year:
+          select#year.custom-select.ml-1(name='year')
+            option(selected='', value='2019') 2019
+            option(value='2020') 2020
+        label.sr-only(for='date') date
+        input#date.form-control.d-none(type='text', name='date', aria-describedby='date', placeholder='Date')
+        label.sr-only(for='dateString') Date
+        input#dateString.form-control.d-none(type='text', name='dateString', aria-describedby='dateString', placeholder='Date')
+      .form-row.w-50.mx-auto.px-2
+        .col-lg.form-group
+          label(for='start') Start Time:
+          select#start.custom-select.ml-1(name='start')
+            option(selected='', value='6 a.m.') 6 a.m.
+            option(value='7 a.m.') 7 a.m.
+            option(value='8 a.m.') 8 a.m.
+            option(value='9 a.m.') 9 a.m.
+            option(value='10 a.m.') 10 a.m.
+            option(value='11 a.m.') 11 a.m.
+            option(value='12 p.m.') 12 p.m.
+            option(value='1 p.m.') 1 p.m.
+            option(value='2 p.m.') 2 p.m.
+            option(value='3 p.m.') 3 p.m.
+            option(value='4 p.m.') 4 p.m.
+            option(value='5 p.m.') 5 p.m.
+            option(value='6 p.m.') 6 p.m.
+            option(value='7 p.m.') 7 p.m.
+            option(value='8 p.m.') 8 p.m.
+        .col-lg.form-group
+          label(for='end') End Time:
+          select#end.custom-select.ml-1(name='end')
+            option(selected='', value='12 p.m.') 12 p.m.
+            option(value='7 a.m.') 7 a.m.
+            option(value='8 a.m.') 8 a.m.
+            option(value='9 a.m.') 9 a.m.
+            option(value='10 a.m.') 10 a.m.
+            option(value='11 a.m.') 11 a.m.
+            option(value='12 p.m.') 12 p.m.
+            option(value='1 p.m.') 1 p.m.
+            option(value='2 p.m.') 2 p.m.
+            option(value='3 p.m.') 3 p.m.
+            option(value='4 p.m.') 4 p.m.
+            option(value='5 p.m.') 5 p.m.
+            option(value='6 p.m.') 6 p.m.
+            option(value='7 p.m.') 7 p.m.
+            option(value='8 p.m.') 8 p.m.
+      .w-50.mx-auto.ml-2
+        hr
+        h4.ml-2 Where:
+      .form-row.w-50.mx-auto
+        .col-lg-8.form-group
+          label.sr-only(for='street') Street Address:
+          input#street.form-control(name='street', type='text', placeholder='Street Address')
+        .col-lg-4.form-group
+          label.sr-only(for='city') City
+          input#city.form-control(name='city', type='text', placeholder='City')
+      .form-row.w-50.mx-auto
+        .col-lg-3.form-group
+          label.sr-only(for='state') State:
+          input#state.form-control(name='state', type='text', placeholder='State')
+        .col-lg-5.form-group
+          label.sr-only(for='zip') Zip
+          input#zip.form-control(name='zip', type='text', placeholder='Zip Code')
+      .w-50.mx-auto
+        hr
+        h4.ml-2 What:
+      .form-row.w-50.mx-auto
+        .col-lg.form-group
+          label.sr-only(for='description') Description
+          textarea#description.form-control(name='description', rows='4', placeholder='Description (Optional)')
+      .w-50.mx-auto.mb-4
+        button#publish.btn.btn-primary.btn-lg(type='submit') Publish
+        br
+        br
+    script(src='https://code.jquery.com/jquery-3.4.1.min.js', integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=', crossorigin='anonymous')
+    script(src='js/list.js')

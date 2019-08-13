@@ -1,0 +1,24 @@
+.bg-light-blue{
+  background-color: #E7F2F3;
+}
+
+.bg-purple{
+  background-color: #604C58;
+}
+
+.purple{
+  color: #604C58;
+}
+
+.bg-green{
+  background-color: #5e7c58;
+}
+
+.bg-gray{
+  background-color: #636669;
+}
+
+.error {
+  border-size: -1px;
+  border-color: red;
+}

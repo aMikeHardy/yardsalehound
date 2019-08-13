@@ -21,8 +21,12 @@ app.use('/', routes);
   //console.log('\n Server running on port 3000...');
 //});
 
+// Serve
 let port = process.env.PORT;
 if (port == null || port == ""){
   port = 3000;
 }
 app.listen(port);
+
+// 6. Set public folder for css/img/js
+app.use(express.static('public'));

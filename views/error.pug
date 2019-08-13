@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .container.pt-4.h-75
+    .container.text-sm-center
+      a(href='/')
+        img.image-fluid.mb-4(src='img/ysh_logo.png', alt='Yardsale Hound Logo')
+    p.alert.bg-light-blue.fade.show= message
+      if !currentUser
+        small#passVerify.form-text.text-muted
+          a(href='login')  Login
+          |  or
+          a(href='register')  Register

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .container.pt-4.mb-4
+    .container.text-sm-center
+      a(href='/')
+        img.image-fluid.mb-4(src='img/ysh_logo.png', alt='Yardsale Hound Logo')
+    .row
+      h2.display-4.purple Hi,
+        |
+        | #{name}!
+  .container
+    .row
+      h2 Your Upcoming Yard Sales:
+    .row
+      .col-lg-9
+        #sales.col
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+
+
+  script(src='https://code.jquery.com/jquery-3.4.1.min.js', integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=', crossorigin='anonymous')
+  script(src='js/profile.js')

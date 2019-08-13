@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  .container.text-sm-center.mb-4.pt-4
+    a(href='/')
+      img.image-fluid.mb-4(src='img/ysh_logo.png', max-width="100%" width="300" alt='Yardsale Hound Logo')
+    label.sr-only(for='zip') Enter Zipcode:
+    input#zip.form-control.w-50.text-sm-center.mx-auto(type='text', placeholder='Enter Zipcode')
+    form(action='http://localhost:3000/sales', method='POST')
+      .form-group
+      .w-50.mx-auto
+        a#search.btn.bg-green.btn-lg.mx-auto.text-sm-center.text-white(role='button') Search Zipcode
+  hr
+
+  .container.pt-4
+    .row
+      .col-lg-9
+        #sales.col
+      .col-lg-3
+        #weather
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+        br
+  script(src='js/script.js')

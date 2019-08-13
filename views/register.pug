@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .container.pt-4
+    .container.text-sm-center
+      a(href='/')
+        img.image-fluid.mb-4(src='img/ysh_logo.png', alt='Yardsale Hound Logo')
+    form#form(action='/users', method='POST')
+      .form-group.w-50.mx-auto
+        label.sr-only(for='name') Name
+        input#nameField.form-control(type='text', name='name', placeholder='Name')
+      .form-group.w-50.mx-auto
+        label.sr-only(for='email') Email address
+        input#email.form-control(type='email', name='email', aria-describedby='emailHelp', placeholder='Email')
+      .form-group.w-50.mx-auto
+        label.sr-only(for='password') Password
+        input#password.form-control(type='password', name='password', placeholder='Password')
+      .form-group.w-50.mx-auto
+        label.sr-only(for='passwordVerify') Re-enter Password
+        input#passwordVerify.form-control(type='password', placeholder='Re-enter Password')
+        small#passVerify.form-text.text-muted
+          | Already have an account?
+          a(href='login')  Login
+      .w-50.mx-auto
+        button.btn.bg-green.btn-lg.text-white(type='submit') Register
+        br
+        br
+        br
+        br
+    script(src='https://code.jquery.com/jquery-3.4.1.min.js', integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=', crossorigin='anonymous')
+    script(src='js/register.js')

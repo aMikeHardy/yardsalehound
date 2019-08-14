@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');  // require in step one
 
 // body-parser statements
 app.use(bodyParser.json());

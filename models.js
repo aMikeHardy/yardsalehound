@@ -3,6 +3,9 @@
 // 1. Require Mongoose
 const mongoose = require('mongoose');
 
+// 5. require for Hashing password
+const bcrypt = require('bcrypt');
+
 // 2. Define Mongoose Schemas
 const UserSchema = new mongoose.Schema({
   name: {
@@ -58,6 +61,18 @@ const SaleSchema = new mongoose.Schema({
   description: {
     type: String
   },
+});
+
+// 6. Hash password before saving to DB
+UserSchema.pre('save', function(next){
+  const user = this;
+  bcrypt.hash(user.password, 10, function(err, hash){
+    if(err){
+      return next(err);
+    }
+    user.password = hash;
+    next();
+  });
 });
 
 // 3. Create the Models

@@ -75,6 +75,27 @@ UserSchema.pre('save', function(next){
   });
 });
 
+// 7. Authenticate against database
+UserSchema.statics.authenticate = function(email, password, callback){
+  User.findOne({email: email})
+    .exec(function (error, user){
+      if(error){
+        return callback(error);
+      } else if(!user){
+        const err = new Error('User not found.');
+        err.status = 401;
+        return callback(err);
+      }
+      bcrypt.compare(password, user.password, function(error, result) {
+        if (result === true) {
+          return callback(null, user); //null for no error
+        } else {
+          return callback();
+        }
+      });
+    });
+}
+
 // 3. Create the Models
 const User = mongoose.model("User", UserSchema);
 const Sale = mongoose.model("Sale", SaleSchema);

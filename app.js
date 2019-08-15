@@ -13,6 +13,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.json());
 
+// Authentication
+const session = require('express-session');
+
+// use Session for tracking logins
+app.use(session({
+  secret: "he likes it, hey Mikey!",
+  resave: true,
+  saveUninitialized: false
+}));
+
+app.use(function(req, res, next){
+  res.locals.currentUser = req.session.userId;
+  next();
+});
+
 // 2. set view engine
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
@@ -48,32 +63,32 @@ const Sale = require('./models.js').Sale;
 mongoose.connect('mongodb://localhost:27017/yardsalehound', {useNewUrlParser: true, 'useCreateIndex': true});
 const db = mongoose.connection;
 
-// Throw Error if connection is unsuccesful
-db.on('error', (err)=>{
-  console.error('\nThere was a connection error: ', err);
-});
+  // Throw Error if connection is unsuccesful
+  db.on('error', (err)=>{
+    console.error('\nThere was a connection error: ', err);
+  });
 
-db.once('open', (err)=>{
-  console.log('\nDatabase connection successful...');
-});
+  db.once('open', (err)=>{
+    console.log('\nDatabase connection successful...');
+  });
 
 // 9. Add Error handlers
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('File Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handler
-// define as the last app.use callback
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  return res.render('error', {
-    message: err.message,
-    error: {}
+  // catch 404 and forward to error handler
+  app.use(function(req, res, next) {
+    var err = new Error('File Not Found');
+    err.status = 404;
+    next(err);
   });
-});
+
+  // error handler
+  // define as the last app.use callback
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    return res.render('error', {
+      message: err.message,
+      error: {}
+    });
+  });
 
 
 // body-parser statements

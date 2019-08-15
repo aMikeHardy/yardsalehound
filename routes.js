@@ -28,8 +28,34 @@ router.get('/list', (req, res, next)=>{
 
 // Get profile
 router.get('/profile', (req, res, next)=>{
-  return res.render('profile');
-})
+  if(!req.session.userId){
+    const err = new Error('You are not authorized to view this page.');
+    err.status = 403;
+    return next(err);
+  }
+  User.findById(req.session.userId)
+    .exec(function (error, user){
+      if(error){
+        return next(error);
+      }else {
+        return res.render('profile', {title: 'Profile', name: user.name});
+      }
+    })
+});
+
+// Get logout
+router.get('/logout', (req, res, next)=>{
+  if(req.session){
+    req.session.destroy(function(err){
+      if(err){
+        return next(err);
+      }else{
+        console.log('User logged out');
+        return res.redirect('/');
+      }
+    });
+  }
+});
 
 // Get error page
 router.get('/error', (req, res, next)=>{
@@ -48,6 +74,42 @@ router.post('/users', (req, res, next)=>{
     res.redirect('/login');
   });
 });
+
+// POST to /login to authenticate credentials and create a user session
+router.post('/login', function(req, res, next){
+  if(req.body.email && req.body.password) {
+    User.authenticate(req.body.email, req.body.password, function(error, user){
+      if( error || !user ){
+        const err = new Error('Wrong email or password.');
+        err.status = 401;
+        return next(err);
+      } else {
+          req.session.userId = user._id;
+          console.log(user.name + ", logged in successfully");
+          return res.redirect('/profile');
+      }
+    });
+  } else {
+    const err = new Error('Email and password are required');
+    err.status = 401;
+    return next(err);
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

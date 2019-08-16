@@ -28,8 +28,8 @@ const SaleSchema = new mongoose.Schema({
     ref: 'User'
   },
   date: {
-    type: String,
-    //required: [true, 'Please enter a date']
+    type: Date,
+    required: [true, 'Please enter a date']
   },
   dateString: {
     type: String

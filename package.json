@@ -19,6 +19,7 @@
   "homepage": "https://github.com/aMikeHardy/yardsalehound#readme",
   "dependencies": {
     "bcrypt": "^3.0.6",
+    "dotenv": "^8.0.0",
     "express-session": "^1.16.2",
     "mongoose": "^5.6.9"
   }
